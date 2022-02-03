@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="800" maxWidth="700" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.avk.client.controllers.ClientController">
+   <children>
+      <VBox layoutY="5.0" prefHeight="794.0" prefWidth="694.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <children>
+             <TextField maxWidth="-Infinity" prefHeight="25.0" prefWidth="169.0" promptText="Найти" text="Поиск" translateX="110.0" />
+            <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" snapToPixel="false" translateY="-30.0" VBox.vgrow="NEVER">
+              <menus>
+                <Menu mnemonicParsing="false" text="Опции">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Профиль" />
+                        <MenuItem mnemonicParsing="false" text="Настройка" />
+                        <MenuItem mnemonicParsing="false" text="Выход" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Button mnemonicParsing="true" prefHeight="25" prefWidth="25" textOverrun="CLIP" translateX="285.0" translateY="-60.0">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" translateY="-2.0">
+                     <image>
+<!--                        <Image url="/zoom_1.png" />-->
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TextArea fx:id="TextArea" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="212.0" translateY="-28.0" />
+            <Label prefHeight="20.0" prefWidth="99.0" text="Разговорчики:" translateX="360.0" translateY="-822.0">
+               <font>
+<!--                  <Font size="14.0" />-->
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <TextField prefHeight="25.0" prefWidth="203.0" translateX="400.0" translateY="10.0" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="366.0" translateY="10.0">
+         <image>
+<!--            <Image url="/human_check.png" />-->
+         </image>
+      </ImageView>
+      <TextField fx:id="textField" layoutX="142.0" layoutY="725.0" prefHeight="64.0" prefWidth="468.0" />
+      <ListView prefHeight="645.0" prefWidth="458.0" translateX="232.0" translateY="70.0" />
+      <Label prefHeight="20.0" prefWidth="140.0" text="Список абонентов:" textAlignment="JUSTIFY" translateX="40.0" translateY="46.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="Mic" translateX="10.0" translateY="731.0">
+         <graphic>
+            <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+<!--                  <Image url="/microphone_large.png" />-->
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <MenuBar layoutX="40.0" layoutY="732.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="55.0" translateX="30.0">
+        <menus>
+          <Menu mnemonicParsing="false">
+            <items>
+              <MenuItem mnemonicParsing="false" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+<!--                              <Image url="/hun_ulybka.png" />-->
+                           </image>
+                        </ImageView>
+                     </graphic>
+              </MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+<!--                              <Image url="/Smail_down.png" />-->
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+<!--                              <Image url="/Smail_star.png" />-->
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+<!--                              <Image url="/Smail_OP.png" />-->
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+            </items>
+               <graphic>
+                  <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <image>
+<!--                        <Image url="/smiley_tongue.png" />-->
+                     </image>
+                  </ImageView>
+               </graphic>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

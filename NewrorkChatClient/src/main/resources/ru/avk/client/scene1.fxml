@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.avk.client.controllers.ClientController">
+
+    <children>
+
+        <VBox prefHeight="794.0" prefWidth="694">
+            <children>
+                <MenuBar prefHeight="10.0" prefWidth="660.0">
+                    <menus>
+                        <Menu text="Настройки">
+                            <items>
+                        <MenuItem mnemonicParsing="false" onAction="#updateUserName" text="Сменить имя пользователя" />
+                                <MenuItem onAction="#close" text="Выход" />
+                            </items>
+                        </Menu>
+                        <Menu text="Помощь">
+                            <items>
+                                <MenuItem text="Руководство" />
+                                <MenuItem onAction="#about" text="О программе" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <Pane prefHeight="45.0" prefWidth="694.0">
+                    <children>
+                        <TextField layoutX="36.0" layoutY="12.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="142.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </TextField>
+                        <TextArea editable="false" layoutX="262.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="129.0" promptText="Собеседник">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </TextArea>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="227.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../human_check.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" y="3.0">
+                            <image>
+                                <Image url="@../../../Human_zoom.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <HBox VBox.vgrow="ALWAYS">
+                    <children>
+                        <ListView fx:id="userList" prefHeight="666.0" prefWidth="267.0" VBox.vgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets right="5.0" />
+                            </HBox.margin>
+                        </ListView>
+                        <TextArea fx:id="textArea" editable="false" prefWidth="600" wrapText="true" HBox.hgrow="NEVER">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextArea>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox>
+                    <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../smiley_tongue.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../paper_clip.png" />
+                            </image>
+                        </ImageView>
+                        <TextField fx:id="textField" onAction="#sendMessage" prefHeight="40.0" prefWidth="469.0" promptText="Введите текст своего сообщения" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets right="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </TextField>
+                        <Button fx:id="btnSendMessage" onAction="#sendMessage" prefHeight="40.0" prefWidth="60.0">
+                            <graphic>
+                                <ImageView fitHeight="40.0" fitWidth="30.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../message_1.png" />
+
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../microphone_large.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
+            </children>
+            <GridPane.margin>
+                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+            </GridPane.margin>
+        </VBox>
+
+    </children>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+
+</GridPane>
