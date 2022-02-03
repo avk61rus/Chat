@@ -5,6 +5,7 @@ import ru.avk.clientserver.CommandType;
 import ru.avk.clientserver.commands.AuthCommandData;
 import ru.avk.clientserver.commands.PrivateMessageCommandData;
 import ru.avk.clientserver.commands.PublicMessageCommandData;
+import ru.avk.clientserver.commands.UpdateUsernameCommandData;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -95,7 +96,6 @@ public class ClientHandler {
             if (command == null) {
                 continue;
             }
-
             switch (command.getType()) {
                 case END:
                     return;
@@ -109,6 +109,15 @@ public class ClientHandler {
                 case PUBLIC_MESSAGE: {
                     PublicMessageCommandData data = (PublicMessageCommandData) command.getData();
                     processMessage(data.getMessage());
+                    break;
+                }
+                case UPDATE_USERNAME: {
+                    UpdateUsernameCommandData data = (UpdateUsernameCommandData) command.getData();
+                    String newUsername = data.getUsername();
+                    server.getAuthService().updateUsername(userName, newUsername);
+                    userName = newUsername;
+                    server.notifyClientUserListUpdated();
+                    break;
                 }
             }
         }

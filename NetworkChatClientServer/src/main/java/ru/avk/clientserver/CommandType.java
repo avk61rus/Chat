@@ -8,6 +8,7 @@ public enum CommandType {
     PRIVATE_MESSAGE,
     CLIENT_MESSAGE,
     END,
+    UPDATE_USERNAME,
     UPDATE_USER_LIST
 }
                                                   
