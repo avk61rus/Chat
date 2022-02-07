@@ -10,14 +10,13 @@ public class AuthService implements IAuthService {
             new User("login3", "pass3", "username3")
     );
 
-    public String getUserNameByLoginAndPassword(String login, String password) {    // * метод региструрующий нового User и принимающий на вход логин и пароль;
-        User requiredUser = new User(login, password);                              // создается экземпляр юзера с логином и паролем;
-        for (User user : USERS) {                                                   // проверка на совпадение логина и пароля с базой, если совпадений нет, то
-            if (requiredUser.equals(user)) {                                         // возвращается имя юзера;
+    public String getUserNameByLoginAndPassword(String login, String password) {
+        User requiredUser = new User(login, password);
+        for (User user : USERS) {
+            if (requiredUser.equals(user)) {
                 return user.getUserName();
             }
         }
-
         return null;
     }
 
@@ -29,11 +28,6 @@ public class AuthService implements IAuthService {
         }
     }
 
-//    @Override // добавлено мною;
-//    public String detUserNameByLoginAndPassword(String login, String password) {
-//        return null;
-//    }
-
     private User getUserByUsermame(String username) {
         for (User user : USERS) {
             if (user.getUserName().equals(username)) {
@@ -42,5 +36,4 @@ public class AuthService implements IAuthService {
         }
         return null;
     }
-
 }

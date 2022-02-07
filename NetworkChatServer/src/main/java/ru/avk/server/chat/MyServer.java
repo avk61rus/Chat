@@ -13,20 +13,18 @@ import java.util.List;
 
 public class MyServer {
 
-    private final List<ClientHandler> clients = new ArrayList<>();     //-объявлеяем список  клиентов;
-    private IAuthService authService;                                   //- объявляем службу идентификации;
+    private final List<ClientHandler> clients = new ArrayList<>();
+    private IAuthService authService;
+    public IAuthService getAuthService() {return authService;}
 
-    public IAuthService getAuthService() {return authService;}         //- служба получения интендификации;
-
-    public void start(int port) {                                     //- метод запускающий соединение в Try с ресурсами;
-        try (ServerSocket serverSocket = new ServerSocket(port)) {    //- создаем сокет
-            System.out.println("Server has been started");            //- Сообщаем в консоль о удачном старте сервера;
-            authService = createAuthService();                          //- ???? запускаем процесс авторизации из DB;
-            authService.start();                                        // вызываем метод старе
+    public void start(int port) {
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println("Server has been started");
+            authService = createAuthService();
+            authService.start();
             while (true) {
-                waitAndProcessClientConnection(serverSocket);           //  ?? не понятно для чего делать бесконечный цикл
-            }                                                           //  ?? ели accept все равно дальше не пустит, пока кто
-                                                                        //  ?? ни будь не постучится;
+                waitAndProcessClientConnection(serverSocket);
+            }
         } catch (IOException e) {
             System.err.println("Failed to bind port " + port);
             e.printStackTrace();
@@ -41,17 +39,17 @@ public class MyServer {
 //        return  new AuthService();
         return new PersistentDBAuthService();
     }
-    private void waitAndProcessClientConnection(ServerSocket serverSocket) throws IOException {   // * метод ожидания подключения клиента;
-        System.out.println("Waiting for new client connection");                                  // сообщение об ожидании подключения клиента;
-        Socket clientSocket = serverSocket.accept();                                              // пока не постучались далее программа не выпоняется;
-        System.out.println("Client has been connected");                                          // Сообщение оподключении клиента;
-        ClientHandler clientHandler = new ClientHandler(this, clientSocket);                      // ??? на данном сокете интендифицируем  клиента;
+    private void waitAndProcessClientConnection(ServerSocket serverSocket) throws IOException {
+        System.out.println("Waiting for new client connection");
+        Socket clientSocket = serverSocket.accept();
+        System.out.println("Client has been connected");
+        ClientHandler clientHandler = new ClientHandler(this, clientSocket);
         clientHandler.handle();
     }
 
-    public synchronized boolean isUsernameBusy(String username) {                                 // * метод проверки нахождения имени клиента в базе;
+    public synchronized boolean isUsernameBusy(String username) {
         for (ClientHandler client : clients) {
-            if (client.getUserName().equals(username)) {                                          // сравнение имени клиента с базой клиентов;
+            if (client.getUserName().equals(username)) {
                 return true;
             }
         }
@@ -59,8 +57,8 @@ public class MyServer {
     }
 
     public synchronized void broadcastMessage(String message, ClientHandler sender) throws IOException {
-        for (ClientHandler client : clients) {                                                              // ?? Если клиент не яляется получателем
-            if (client != sender) {                                                                         // отправляется сообщение (message):
+        for (ClientHandler client : clients) {
+            if (client != sender) {
                 System.out.println("clientMessageCommand");
                 client.sendCommand(Command.clientMessageCommand(sender.getUserName(), message));
             }
@@ -69,15 +67,15 @@ public class MyServer {
 
     public synchronized void sendPrivateMessage(ClientHandler sender, String recipient, String privateMessage)
             throws IOException {
-        for (ClientHandler client : clients) {                                                               // Если клиент не является отправителем и
-            if (client != sender && client.getUserName().equals(recipient)) {                                // при этом получатель - он получает
-                client.sendCommand(Command.clientMessageCommand(sender.getUserName(), privateMessage));      // приватное сообщение (privateMessage)
-                break;                                                                                       // ? видимо с предложением зарегиться.
+        for (ClientHandler client : clients) {
+            if (client != sender && client.getUserName().equals(recipient)) {
+                client.sendCommand(Command.clientMessageCommand(sender.getUserName(), privateMessage));
+                break;
             }
         }
     }
 
-    public synchronized void subscribe(ClientHandler clientHandler) throws IOException {                      // регистрация нового клинта в базе;
+    public synchronized void subscribe(ClientHandler clientHandler) throws IOException {
         clients.add(clientHandler);
         notifyClientUserListUpdated();
     }
@@ -89,11 +87,9 @@ public class MyServer {
 
     public void notifyClientUserListUpdated() throws IOException {
         List<String> userListOnline = new ArrayList<>();
-
         for (ClientHandler client : clients) {
             userListOnline.add(client.getUserName());
         }
-
         for (ClientHandler client : clients) {
             client.sendCommand(Command.updateUserListCommand(userListOnline));
         }

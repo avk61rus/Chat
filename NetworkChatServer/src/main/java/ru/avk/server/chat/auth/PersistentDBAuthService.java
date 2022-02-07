@@ -38,7 +38,7 @@ public class PersistentDBAuthService implements IAuthService {
             resultSet.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            System.err.printf("Failed to fetch username to DB. Login: %s%n", login, password);
+            System.err.printf("Failed to fetch username to DB. Login: %s%n Password: %s", login, password);
         }
         return username;
     }
@@ -52,14 +52,14 @@ public class PersistentDBAuthService implements IAuthService {
             System.out.println("Update username. Update rows: " + result);
         }catch (SQLException throwables) {
             throwables.printStackTrace();
-            System.err.printf("Failed to username. CurrentUsername: %s; newUsername: %s%n", currentUsername, newUsername);
+            System.err.printf("Failed to username. currentUsername: %s; newUsername: %s%n", currentUsername, newUsername);
         }
     }
 
     private PreparedStatement createGetUsernameStatement() throws SQLException {
-        return connection.prepareStatement("SELECT username FROM user WHERE login = ? AND password = ?");
+        return connection.prepareStatement("SELECT username FROM users WHERE login = ? AND password = ? ");
     }
     private PreparedStatement createUpdateUsernameStatement() throws SQLException {
-        return connection.prepareStatement("UPDATE user SET username = ? WHERE username = ?");
+        return connection.prepareStatement("UPDATE users SET username = ? WHERE username = ? ");
     }
 }

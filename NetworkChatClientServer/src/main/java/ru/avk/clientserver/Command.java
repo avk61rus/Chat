@@ -1,7 +1,6 @@
 package ru.avk.clientserver;
 
 import ru.avk.clientserver.commands.*;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -66,10 +65,11 @@ public class Command implements Serializable {
         command.data = new UpdateUserListCommandData(users);
         return command;
     }
+
     public static Command updateUsernameCommand(String newUsername) {
         Command command = new Command();
         command.type = CommandType.UPDATE_USERNAME;
-        Command.data = new UpdateUsernameCommandData(newUsername);
+        command.data = new UpdateUsernameCommandData(newUsername);
         return command;
     }
 }

@@ -7,9 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import ru.avk.client.ClientChat;
-import ru.avk.client.model.dialogs.Dialogs;
 import ru.avk.client.model.Network;
 import ru.avk.client.model.ReadCommandListener;
+import ru.avk.client.model.dialogs.Dialogs;
 import ru.avk.clientserver.Command;
 import ru.avk.clientserver.CommandType;
 import ru.avk.clientserver.commands.AuthOkCommandData;
@@ -19,14 +19,13 @@ import java.io.IOException;
 
 public class AuthController {
 
-
     @FXML
     private TextField loginField;
     @FXML
     private PasswordField passwordField;
     @FXML
     private Button authButton;
-//    @FXML
+    @FXML
     private ReadCommandListener readMessageListener;
 
     @FXML
@@ -62,12 +61,11 @@ public class AuthController {
                 if (command.getType() == CommandType.AUTH_OK) {
                     AuthOkCommandData data = (AuthOkCommandData) command.getData();
                     String username = data.getUsername();
+                    Network.getInstance().setCurrentUserName(username);
                     Platform.runLater(() -> ClientChat.INSTANCE.switchToMainChatWindow(username));
                 } else if (command.getType() == CommandType.ERROR){
                     ErrorCommandData data = (ErrorCommandData) command.getData();
-                    Platform.runLater(() -> {
-                        Dialogs.AuthError.INVALID_CREDENTIALS.show(data.getErrorMessage());
-                    });
+                    Platform.runLater(() -> Dialogs.AuthError.INVALID_CREDENTIALS.show(data.getErrorMessage()));
                 }
             }
         });

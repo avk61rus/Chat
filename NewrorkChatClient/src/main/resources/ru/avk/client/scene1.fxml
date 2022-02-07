@@ -8,28 +8,28 @@
 
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.avk.client.controllers.ClientController">
 
-    <children>
+<!--    <children>-->
 
         <VBox prefHeight="794.0" prefWidth="694">
-            <children>
+<!--            <children>-->
                 <MenuBar prefHeight="10.0" prefWidth="660.0">
-                    <menus>
+<!--                    <menus>-->
                         <Menu text="Настройки">
-                            <items>
+<!--                            <items>-->
                         <MenuItem mnemonicParsing="false" onAction="#updateUserName" text="Сменить имя пользователя" />
                                 <MenuItem onAction="#close" text="Выход" />
-                            </items>
+<!--                            </items>-->
                         </Menu>
                         <Menu text="Помощь">
-                            <items>
-                                <MenuItem text="Руководство" />
+<!--                            <items>-->
+                                <MenuItem onAction="#showHelp" text="Руководство" />
                                 <MenuItem onAction="#about" text="О программе" />
-                            </items>
+<!--                            </items>-->
                         </Menu>
-                    </menus>
+<!--                    </menus>-->
                 </MenuBar>
                 <Pane prefHeight="45.0" prefWidth="694.0">
-                    <children>
+<!--                    <children>-->
                         <TextField layoutX="36.0" layoutY="12.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="142.0">
                             <font>
                                 <Font size="18.0" />
@@ -41,19 +41,19 @@
                             </font>
                         </TextArea>
                         <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="227.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
+<!--                            <image>-->
                                 <Image url="@../../../human_check.png" />
-                            </image>
+<!--                            </image>-->
                         </ImageView>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" y="3.0">
-                            <image>
+<!--                            <image>-->
                                 <Image url="@../../../Human_zoom.png" />
-                            </image>
+<!--                            </image>-->
                         </ImageView>
-                    </children>
+<!--                    </children>-->
                 </Pane>
                 <HBox VBox.vgrow="ALWAYS">
-                    <children>
+<!--                    <children>-->
                         <ListView fx:id="userList" prefHeight="666.0" prefWidth="267.0" VBox.vgrow="ALWAYS">
                             <HBox.margin>
                                 <Insets right="5.0" />
@@ -64,22 +64,22 @@
                                 <Font size="14.0" />
                             </font>
                         </TextArea>
-                    </children>
+<!--                    </children>-->
                     <VBox.margin>
                         <Insets bottom="5.0" />
                     </VBox.margin>
                 </HBox>
                 <HBox>
-                    <children>
+<!--                    <children>-->
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
+<!--                            <image>-->
                                 <Image url="@../../../smiley_tongue.png" />
-                            </image>
+<!--                            </image>-->
                         </ImageView>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
+<!--                            <image>-->
                                 <Image url="@../../../paper_clip.png" />
-                            </image>
+<!--                            </image>-->
                         </ImageView>
                         <TextField fx:id="textField" onAction="#sendMessage" prefHeight="40.0" prefWidth="469.0" promptText="Введите текст своего сообщения" HBox.hgrow="ALWAYS">
                             <HBox.margin>
@@ -92,10 +92,10 @@
                         <Button fx:id="btnSendMessage" onAction="#sendMessage" prefHeight="40.0" prefWidth="60.0">
                             <graphic>
                                 <ImageView fitHeight="40.0" fitWidth="30.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
-                                    <image>
+<!--                                    <image>-->
                                         <Image url="@../../../message_1.png" />
 
-                                    </image>
+<!--                                    </image>-->
                                 </ImageView>
                             </graphic>
                         </Button>
@@ -104,20 +104,26 @@
                                 <Image url="@../../../microphone_large.png" />
                             </image>
                         </ImageView>
-                    </children>
+<!--                    </children>-->
                 </HBox>
-            </children>
+<!--            </children>-->
             <GridPane.margin>
                 <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
             </GridPane.margin>
         </VBox>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+<!--    </children>-->
 
-    </children>
-    <columnConstraints>
-        <ColumnConstraints />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints />
-    </rowConstraints>
+<!--    <columnConstraints>-->
+<!--        <ColumnConstraints />-->
+<!--    </columnConstraints>-->
+<!--    <rowConstraints>-->
+<!--        <RowConstraints />-->
+<!--    </rowConstraints>-->
 
 </GridPane>

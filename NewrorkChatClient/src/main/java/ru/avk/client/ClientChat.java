@@ -18,9 +18,7 @@ import java.io.IOException;
 public class ClientChat extends Application {
 
     public static ClientChat INSTANCE;
-
     public static final String CONNECTION_ERROR_MESSAGE = "Невозможно установить сетевое соединение";
-
     private Stage primaryStage;
     private Stage authStage;
     private FXMLLoader chatWindowLoader;
@@ -34,7 +32,6 @@ public class ClientChat extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         this.primaryStage = stage;
-
         initViews();
         getChatStage().show();
         getAuthStage().show();
@@ -48,8 +45,7 @@ public class ClientChat extends Application {
 
     private void initChatWindow() throws IOException {
         chatWindowLoader = new FXMLLoader();
-        chatWindowLoader.setLocation(ClientChat.class.getResource("scene1.fxml"));   /*chat-template.fxml*/
-
+        chatWindowLoader.setLocation(ClientChat.class.getResource("scene1.fxml"));
         Parent root = chatWindowLoader.load();
         this.primaryStage.setScene(new Scene(root));
     }
@@ -58,7 +54,6 @@ public class ClientChat extends Application {
         authLoader = new FXMLLoader();
         authLoader.setLocation(ClientChat.class.getResource("authDialog.fxml"));
         Parent authDialogPanel = authLoader.load();
-
         authStage = new Stage();
         authStage.initOwner(primaryStage);
         authStage.initModality(Modality.WINDOW_MODAL);
@@ -67,17 +62,13 @@ public class ClientChat extends Application {
 
     private void connectToServer(ClientController clientController) {
         boolean result = Network.getInstance().connect();
-
         if (!result) {
             String errorMessage = CONNECTION_ERROR_MESSAGE;
             System.err.println(errorMessage);
             showErrorDialog(errorMessage);
             return;
         }
-
-
         clientController.setApplication(this);
-
         this.primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {

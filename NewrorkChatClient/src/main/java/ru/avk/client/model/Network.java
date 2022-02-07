@@ -13,24 +13,21 @@ public class Network {
 
     public static final int SERVER_PORT = 8189;
     public static final String SERVER_HOST = "localhost";
-
     private static Network INSTANCE;
-
     private final int port;
     private final String host;
     private Socket socket;
     private ObjectInputStream socketInput;
     private ObjectOutputStream socketOutput;
-
     private final List<ReadCommandListener> listeners = new CopyOnWriteArrayList<>();
     private Thread readMessageProcess;
+    private String currentUserName;
     private boolean connected;
 
     public static Network getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Network();
         }
-
         return INSTANCE;
     }
 
@@ -72,7 +69,6 @@ public class Network {
             socketOutput.writeObject(command);
         } catch (IOException e) {
             System.err.println("Не удалось отправить сообщение на сервер");
-            e.printStackTrace();
             throw e;
         }
     }
@@ -97,7 +93,6 @@ public class Network {
                     }
                 } catch (IOException e) {
                     System.err.println("Не удалось прочитать сообщения от сервера");
-                    e.printStackTrace();
                     close();
                     break;
                 }
@@ -116,7 +111,6 @@ public class Network {
             System.err.println("Failed to read Command class");
             e.printStackTrace();
         }
-
         return command;
     }
 
@@ -132,6 +126,7 @@ public class Network {
     public void changeUsername(String newUsername) throws IOException {
         sendCommand(Command.updateUsernameCommand(newUsername));
     }
+
     public void close() {
         try {
             connected = false;
@@ -140,6 +135,14 @@ public class Network {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getCurrentUserName() {
+        return currentUserName;
+    }
+
+    public void setCurrentUserName(String currentUserName) {
+        this.currentUserName = currentUserName;
     }
 
     public boolean isConnected() {
