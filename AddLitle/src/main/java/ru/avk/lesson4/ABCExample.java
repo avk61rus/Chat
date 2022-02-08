@@ -1,7 +1,5 @@
 package ru.avk.lesson4;
 
-import java.security.AllPermission;
-
 public class ABCExample {
 
     private final Object mon = new Object();
@@ -19,51 +17,51 @@ public class ABCExample {
 
     public void printA() {
         synchronized (mon) {
-            for (int i =0; i < 5; i++) {
-                while (currentLetter != 'A') {
-                    try {
+            try {
+                for (int i = 0; i < 5; i++) {
+                    while (currentLetter != 'A') {
                         mon.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
+                    System.out.print("A");
+                    currentLetter = 'B';
+                    mon.notifyAll();
                 }
-                System.out.print("A");
-                currentLetter = 'B';
-                mon.notifyAll();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
 
     public void printB() {
         synchronized (mon) {
-            for (int i =0; i < 5; i++) {
-                while (currentLetter != 'B') {
-                    try {
+            try {
+                for (int i = 0; i < 5; i++) {
+                    while (currentLetter != 'B') {
                         mon.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
+                    System.out.print("B");
+                    currentLetter = 'C';
+                    mon.notifyAll();
                 }
-                System.out.print("B");
-                currentLetter = 'C';
-                mon.notifyAll();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
 
     public void printC() {
         synchronized (mon) {
-            for (int i =0; i < 5; i++) {
-                while (currentLetter != 'C') {
-                    try {
+            try {
+                for (int i = 0; i < 5; i++) {
+                    while (currentLetter != 'C') {
                         mon.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
+                    System.out.print("C ");
+                    currentLetter = 'A';
+                    mon.notifyAll();
                 }
-                System.out.print("C");
-                currentLetter = 'A';
-                mon.notifyAll();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
