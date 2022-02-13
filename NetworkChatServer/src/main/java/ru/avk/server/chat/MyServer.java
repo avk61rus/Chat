@@ -1,7 +1,6 @@
 package ru.avk.server.chat;
 
 import ru.avk.clientserver.Command;
-import ru.avk.server.chat.auth.AuthService;
 import ru.avk.server.chat.auth.IAuthService;
 import ru.avk.server.chat.auth.PersistentDBAuthService;
 
@@ -10,18 +9,22 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MyServer {
 
     private final List<ClientHandler> clients = new ArrayList<>();
     private IAuthService authService;
     public IAuthService getAuthService() {return authService;}
+    private ExecutorService executorService;
 
     public void start(int port) {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Server has been started");
             authService = createAuthService();
             authService.start();
+            executorService = Executors.newCachedThreadPool();
             while (true) {
                 waitAndProcessClientConnection(serverSocket);
             }
@@ -32,6 +35,7 @@ public class MyServer {
             if (authService !=null) {
                 authService.stop();
             }
+            if (executorService != null) {executorService.shutdown();}
         }
     }
 
@@ -93,6 +97,10 @@ public class MyServer {
         for (ClientHandler client : clients) {
             client.sendCommand(Command.updateUserListCommand(userListOnline));
         }
+    }
+
+    public ExecutorService getExecutorService() {
+        return executorService;
     }
 }
 
