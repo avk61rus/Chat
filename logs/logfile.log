@@ -1,0 +1,23 @@
+2022-02-17 11:51:53 [main] INFO  ru.avk.server.chat.MyServer - Server has been started
+2022-02-17 11:51:53 [main] INFO  ru.avk.server.chat.auth.PersistentDBAuthService - Create DB connection...
+2022-02-17 11:51:53 [main] INFO  ru.avk.server.chat.auth.PersistentDBAuthService - DB connection is created successfully
+2022-02-17 11:51:53 [main] INFO  ru.avk.server.chat.MyServer - Waiting for new client connection
+2022-02-17 11:52:18 [main] INFO  ru.avk.server.chat.MyServer - Client has been connected
+2022-02-17 11:52:18 [main] INFO  ru.avk.server.chat.MyServer - Waiting for new client connection
+2022-02-17 11:57:12 [main] INFO  ru.avk.server.chat.MyServer - Server has been started
+2022-02-17 11:57:12 [main] INFO  ru.avk.server.chat.auth.PersistentDBAuthService - Create DB connection...
+2022-02-17 11:57:13 [main] INFO  ru.avk.server.chat.auth.PersistentDBAuthService - DB connection is created successfully
+2022-02-17 11:57:13 [main] INFO  ru.avk.server.chat.MyServer - Waiting for new client connection
+2022-02-17 13:42:01 [main] INFO  ru.avk.server.chat.MyServer - Client has been connected
+2022-02-17 13:42:01 [main] INFO  ru.avk.server.chat.MyServer - Waiting for new client connection
+2022-02-17 14:02:53 [main] INFO  ru.avk.server.chat.MyServer - Client has been connected
+2022-02-17 14:02:53 [main] INFO  ru.avk.server.chat.MyServer - Waiting for new client connection
+2022-02-17 14:03:15 [pool-2-thread-2] INFO  ru.avk.server.chat.MyServer - clientMessageCommand
+2022-02-17 14:54:18 [main] INFO  ru.avk.server.chat.MyServer - Server has been started
+2022-02-17 14:54:18 [main] INFO  ru.avk.server.chat.auth.PersistentDBAuthService - Create DB connection...
+2022-02-17 14:54:18 [main] INFO  ru.avk.server.chat.auth.PersistentDBAuthService - DB connection is created successfully
+2022-02-17 14:54:18 [main] INFO  ru.avk.server.chat.MyServer - Waiting for new client connection
+2022-02-17 14:55:12 [main] INFO  ru.avk.server.chat.MyServer - Client has been connected
+2022-02-17 14:55:12 [main] INFO  ru.avk.server.chat.MyServer - Waiting for new client connection
+2022-02-17 14:55:49 [main] INFO  ru.avk.server.chat.MyServer - Client has been connected
+2022-02-17 14:55:49 [main] INFO  ru.avk.server.chat.MyServer - Waiting for new client connection
