@@ -17,7 +17,6 @@ import ru.avk.clientserver.Command;
 import ru.avk.clientserver.CommandType;
 import ru.avk.clientserver.commands.ClientMessageCommandData;
 import ru.avk.clientserver.commands.UpdateUserListCommandData;
-
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
@@ -28,7 +27,7 @@ import java.util.Optional;
 
 public class ClientController {
 
-    private static final int LAST_HISTOTY_ROWS_NUMBER = 100;
+    private static final int LAST_HISTORY_ROWS_NUMBER = 100;
     @FXML
     private TextArea textArea;
     @FXML
@@ -140,7 +139,7 @@ public class ClientController {
     }
 
     private void loadChatHistory() {
-        String rows = chatHistoryService.loadLastRow(LAST_HISTOTY_ROWS_NUMBER);
+        String rows = chatHistoryService.loadLastRow(LAST_HISTORY_ROWS_NUMBER);
         textArea.clear();
         textArea.setText(rows);
     }

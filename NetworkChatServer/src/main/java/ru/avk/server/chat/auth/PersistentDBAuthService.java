@@ -1,8 +1,14 @@
 package ru.avk.server.chat.auth;
 
+import org.apache.logging.log4j.LogManager;
+
 import java.sql.*;
+import org.apache.logging.log4j.Logger;
+
 
 public class PersistentDBAuthService implements IAuthService {
+
+    private final static Logger LOGGER = LogManager.getLogger(PersistentDBAuthService.class);
 
     private static final String DB_URL = "jdbc:sqlite:C:\\IdeaProjects\\Сonversations\\users.db";
     private Connection connection;
@@ -12,14 +18,14 @@ public class PersistentDBAuthService implements IAuthService {
     @Override
     public void start() {
         try {
-            System.out.println("Create DB connection...");
+            LOGGER.info("Create DB connection...");
             connection = DriverManager.getConnection(DB_URL);
-            System.out.println("DB connection is created successfully");
+            LOGGER.info("DB connection is created successfully");
             getUsernameStatement = createGetUsernameStatement();
             updateUsernameStatement = createGetUsernameStatement();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            System.err.println("Failed to connect to DB by URL: " + DB_URL);
+            LOGGER.error("Failed to connect to DB by URL: {}" + DB_URL);
             throw new RuntimeException("Failed to start auth service");
         }
     }
@@ -38,7 +44,7 @@ public class PersistentDBAuthService implements IAuthService {
             resultSet.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            System.err.printf("Failed to fetch username to DB. Login: %s%n Password: %s", login, password);
+            LOGGER.error("Failed to fetch username to DB. Login: {} Password: {}%n}", login, password);
         }
         return username;
     }
@@ -49,12 +55,27 @@ public class PersistentDBAuthService implements IAuthService {
             updateUsernameStatement.setString(1, newUsername);
             updateUsernameStatement.setString(2, currentUsername);
             int result = updateUsernameStatement.executeUpdate();
-            System.out.println("Update username. Update rows: " + result);
+           LOGGER.info("Update username. Update rows: " + result);
         }catch (SQLException throwables) {
             throwables.printStackTrace();
-            System.err.printf("Failed to username. currentUsername: %s; newUsername: %s%n", currentUsername, newUsername);
+           LOGGER.error("Failed to username. currentUsername: {}; newUsername: %{}%n", currentUsername, newUsername);
         }
     }
+    @Override
+    public void stop() {
+        if(connection != null) {
+            try {
+                LOGGER.info("Closing DB connection");
+                connection.close();
+                LOGGER.info("DB connection is closed");
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+                LOGGER.error("Failed to close connection to DB by URL: {}", DB_URL);
+                 throw  new RuntimeException("Failed to stop auth service");
+            }
+        }
+    }
+
 
     private PreparedStatement createGetUsernameStatement() throws SQLException {
         return connection.prepareStatement("SELECT username FROM users WHERE login = ? AND password = ? ");
